@@ -1,0 +1,149 @@
+<?php
+ $msg = new \Mini\Libs\FlashMessages();
+ use Mini\Model\Register;
+ if(!isset($_GET['admissionId'])){
+    ?>
+        <div class="container">
+            <div class="row">
+                <?php
+                   (new Register())->updateStudentRecord() 
+                ?>
+            </div>
+        </div>
+<?php
+ }else{
+    
+    $staff = (new Register())->getStudentInfo($_GET['admissionId']);
+
+  
+
+?>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3" style="background-color:white; margin-top:10px; padding-top:20px;">
+            <?php $msg->display();?>
+            <h3>Update Student Admission Information </h3>
+            <hr>
+            <form action="<?php $_SERVER['PHP_SELF'];?>" method="POST" class="" role="form" enctype="multipart/form-data">
+                   
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <img height="200" width="200" src="<?php echo URL ?>/studentImage/<?php echo $staff->photo?>" alt="" srcset="">
+                            </div>
+                        </div>
+
+                       
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="" for="">Registration Date </label>
+                                <input type="text" class="form-control"  name="registrationDate" value="<?php echo $staff->registrationDate?>">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="" for="">Admission ID </label>
+                                <input type="text" class="form-control"  name="admissionId" value="<?php echo $staff->admissionId?>">
+                            </div>
+                        </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="" for="">Surname </label>
+                        <input type="text" name="surname" class="form-control" value="<?php echo $staff->surname?>">
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="" for="">Other names </label>
+                        <input type="text" class="form-control" name="otherName" value="<?php echo $staff->otherName?>">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                    <label for="my-select">Gender </label>
+                        <select id="my-select" class="form-control" name="gender">
+                            <option value="<?php echo $staff->gender?>"><?php echo $staff->gender?></option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                </div>
+                
+             
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="" for="">State</label>
+                        <input type="text" class="form-control" name="state" value="<?php echo $staff->state?>">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="" for="">LGA</label>
+                        <input type="text" class="form-control" name="lga" value="<?php echo $staff->lga?>">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                    <label for="my-select">Class Admitted Into </label>
+                            <select id="my-select" class="form-control" name="classAdmittedInto">
+                                <option value="<?php echo $staff->classAdmittedInto?>"><?php echo $staff->classAdmittedInto?></option>
+                                <option value="JSS1">JSS1</option>
+                                <option value="JSS2">JSS2</option>
+                                <option value="JSS3">JSS3</option>
+                                <option value="SSS1">SSS1</option>
+                                <option value="SSS2">SSS2</option>
+                                <option value="SSS3">SSS3</option>
+                             </select>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="" for="">Next of kin name</label>
+                        <input type="text" class="form-control" name="nextOfKinName" value="<?php echo $staff->nextOfKinName?>">
+                    </div>
+                </div>
+
+                
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="" for="">Next of kin address</label>
+                        <input type="text" class="form-control" name="nextOfKinAddress" value="<?php echo $staff->nextOfKinAddress?>">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="" for="">Next of kin phone</label>
+                        <input type="text" class="form-control" name="nextOfKinPhone" value="<?php echo $staff->nextOfKinPhone?>">
+                    </div>
+                </div>
+               
+               
+             
+
+                <div class="form-group">
+                    <button type="submit" name="updateStudentBtn" class="btn btn-primary btn-block">Update</button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+<?php
+ }
+ ?>
